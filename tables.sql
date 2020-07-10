@@ -6,7 +6,6 @@ CREATE TABLE `event` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE `participation` (
   `id` int(11) NOT NULL,
   `employee_id` int(11) NOT NULL,

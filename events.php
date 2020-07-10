@@ -1,5 +1,4 @@
 <h3>Filter events by <i>employee</i>, <i>event name</i> and <i>date</i></h2>
-
 <form  method="POST" >
 	Employee: <input name="employee"      value="<?= isset($_POST['employee']) ? $_POST['employee'] : '' ?>" >
 	Event name: <input name="event"       value="<?= isset($_POST['event']) ? $_POST['event'] : '' ?>" >
@@ -8,12 +7,11 @@
 </form> 
 *Leave the fields empty if you want to view all the events and all employees.<br />
 <?php
-include 'versioncomparison.php';
-$vc = new VersionComparison(); 
-
 if (isset($_POST) and sizeof($_POST) !== 0){
 	require_once 'db_config.php';
 	include 'db.php';
+	include 'versioncomparison.php';
+    $vc = new VersionComparison(); 
 	$db = new db(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	$query = "SELECT emp.name as empl_name, event.name, fee, version, date FROM employee as emp
     LEFT JOIN participation ON emp.id = participation.employee_id 	

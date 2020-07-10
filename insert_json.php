@@ -2,9 +2,8 @@
 require_once 'db_config.php';
 include 'db.php';
 $db = new db(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-//echo '<pre>';
 $array = json_decode(file_get_contents("events.json"), true);
-foreach ($array as $p) { //print_r( $p ); 
+foreach ($array as $p) { 
 	// insert employee
 	$empl_id = $db->query("SELECT id FROM employee WHERE mail = ?",  $p['employee_mail']  )->fetchArray();
 	if (!$empl_id){ 
@@ -16,4 +15,4 @@ foreach ($array as $p) { //print_r( $p );
 	// insert event
 	$db->query("INSERT IGNORE INTO event VALUES (?, ?, ?, ?, ?)", $p['event_id'], $p['event_name'],  $p['participation_fee'], $p['version'],  $p['event_date']);  		
 }
-echo 'Inserted '. count($array) . ' participation items';
+echo 'Inserted ' . count($array) . ' participation items';
