@@ -12,8 +12,8 @@ foreach ($array as $p) { //print_r( $p );
 		echo 'employee is inserted with id: ' , $empl_id, '<br />' ;
 	} 
 	// insert participations with newly acquired employee id : empl_id
-    $db->query("INSERT INTO participation VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE employee_id = ?", $p['participation_id'], $empl_id, $p['event_id'], $p['participation_fee'], $p['version'],  $empl_id);  		
+    $db->query("INSERT INTO participation VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE employee_id = ?", $p['participation_id'], $empl_id, $p['event_id'], $empl_id);  		
 	// insert event
-	$db->query("INSERT IGNORE INTO event VALUES (?, ?, ?)", $p['event_id'], $p['event_name'], $p['event_date']);  		
+	$db->query("INSERT IGNORE INTO event VALUES (?, ?, ?, ?, ?)", $p['event_id'], $p['event_name'],  $p['participation_fee'], $p['version'],  $p['event_date']);  		
 }
 echo 'Inserted '. count($array) . ' participation items';
